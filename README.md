@@ -1,4 +1,4 @@
-# Hospital Management System
+# Healthcare Management System
 
 A comprehensive Java GUI-based application for managing hospital operations including patients, doctors, and appointments using PostgreSQL database.
 
