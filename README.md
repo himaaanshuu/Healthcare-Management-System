@@ -1,4 +1,4 @@
-# Hospital Management System
+# Healthcare Management System
 
 A comprehensive Java GUI-based application for managing hospital operations including patients, doctors, and appointments using a PostgreSQL database.
 
@@ -80,7 +80,7 @@ build-and-run.sh
 This script will automatically:
 - Compile all Java files  
 - Run the project  
-- Launch the **Hospital Management System GUI**
+- Launch the **Healthcare Management System GUI**
 
 If double-clicking doesn't work, run manually using terminal:
 
