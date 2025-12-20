@@ -15,6 +15,7 @@ public class DoctorManagementDialog extends JDialog {
     private DoctorDAO doctorDAO;
     private MainFrame parentFrame;
     private boolean isEditMode = false;
+    @SuppressWarnings("unused")
     private Doctor existingDoctor;
 
     public DoctorManagementDialog(MainFrame parent) {
@@ -209,7 +210,7 @@ public class DoctorManagementDialog extends JDialog {
                 JOptionPane.showMessageDialog(this, 
                     isEditMode ? "Doctor updated successfully!" : "Doctor added successfully!", 
                     "Success", JOptionPane.INFORMATION_MESSAGE);
-                parentFrame.refreshAllTables();
+                parentFrame.refreshDoctorTable(); // Fixed: Changed from refreshAllTables()
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(this, 
