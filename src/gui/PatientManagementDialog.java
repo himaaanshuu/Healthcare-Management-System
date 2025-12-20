@@ -16,6 +16,7 @@ public class PatientManagementDialog extends JDialog {
     private PatientDAO patientDAO;
     private MainFrame parentFrame;
     private boolean isEditMode = false;
+    @SuppressWarnings("unused")
     private Patient existingPatient;
     
     public PatientManagementDialog(MainFrame parent) {
@@ -112,7 +113,7 @@ public class PatientManagementDialog extends JDialog {
         panel.add(emailField, gbc);
         row++;
         
-                // Blood Group
+        // Blood Group
         gbc.gridx = 0; gbc.gridy = row;
         panel.add(new JLabel("Blood Group:"), gbc);
         gbc.gridx = 1;
@@ -215,7 +216,7 @@ public class PatientManagementDialog extends JDialog {
                 JOptionPane.showMessageDialog(this, 
                     isEditMode ? "Patient updated successfully!" : "Patient added successfully!", 
                     "Success", JOptionPane.INFORMATION_MESSAGE);
-                parentFrame.refreshAllTables();
+                parentFrame.refreshPatientTable(); // This line is already correct!
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(this, 
@@ -230,4 +231,3 @@ public class PatientManagementDialog extends JDialog {
         }
     }
 }
-       
