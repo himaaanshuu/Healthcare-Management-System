@@ -45,15 +45,23 @@ echo        Compiling Java Files
 echo ========================================
 echo.
 
-echo Step 1: Compiling model classes...
-javac -cp ".;lib\*" -d bin src\model\*.java
+echo Step 1: Compiling utils classes...
+javac -cp ".;lib\*" -d bin src\utils\*.java
+if %errorlevel% neq 0 (
+    echo ERROR: Failed to compile utils classes
+    pause
+    exit /b 1
+)
+
+echo Step 2: Compiling model classes...
+javac -cp ".;lib\*;bin" -d bin src\model\*.java
 if %errorlevel% neq 0 (
     echo ERROR: Failed to compile model classes
     pause
     exit /b 1
 )
 
-echo Step 2: Compiling DAO classes...
+echo Step 3: Compiling DAO classes...
 javac -cp ".;lib\*;bin" -d bin src\dao\*.java
 if %errorlevel% neq 0 (
     echo ERROR: Failed to compile DAO classes
@@ -61,7 +69,7 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-echo Step 3: Compiling GUI classes...
+echo Step 4: Compiling GUI classes...
 javac -cp ".;lib\*;bin" -d bin src\gui\*.java
 if %errorlevel% neq 0 (
     echo ERROR: Failed to compile GUI classes
@@ -69,7 +77,7 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-echo Step 4: Compiling main class...
+echo Step 5: Compiling main class...
 javac -cp ".;lib\*;bin" -d bin src\main\Main.java
 if %errorlevel% neq 0 (
     echo ERROR: Failed to compile main class
