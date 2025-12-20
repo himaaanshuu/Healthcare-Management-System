@@ -1,61 +1,3 @@
-// package gui;
-
-// import javax.swing.table.AbstractTableModel;
-// import java.util.List;
-
-// public class CustomTableModel extends AbstractTableModel {
-//     private final List<?> data;
-//     private final String[] columnNames;
-//     private final String[] propertyNames;
-    
-//     public CustomTableModel(List<?> data, String[] columnNames, String[] propertyNames) {
-//         this.data = data;
-//         this.columnNames = columnNames;
-//         this.propertyNames = propertyNames;
-//     }
-    
-//     @Override
-//     public int getRowCount() {
-//         return data.size();
-//     }
-    
-//     @Override
-//     public int getColumnCount() {
-//         return columnNames.length;
-//     }
-    
-//     @Override
-//     public String getColumnName(int column) {
-//         return columnNames[column];
-//     }
-    
-//     @Override
-//     public Object getValueAt(int rowIndex, int columnIndex) {
-//         try {
-//             Object item = data.get(rowIndex);
-//             String propertyName = propertyNames[columnIndex];
-            
-//             // Use reflection to get the property value
-//             java.lang.reflect.Method method = item.getClass().getMethod("get" + 
-//                 propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1));
-//             return method.invoke(item);
-            
-//         } catch (Exception e) {
-//             e.printStackTrace();
-//             return null;
-//         }
-//     }
-    
-//     public Object getItemAt(int rowIndex) {
-//         return data.get(rowIndex);
-//     }
-    
-//     public void updateData(List<?> newData) {
-//         // Note: This would need to be handled differently in a real application
-//         // as we're using a generic list. For simplicity, we'll just fire the event.
-//         fireTableDataChanged();
-//     }
-// }
 package gui;
 
 import model.Patient;
@@ -77,7 +19,7 @@ public class CustomTableModel extends AbstractTableModel {
     
     @Override
     public int getRowCount() {
-        return data.size();
+        return data != null ? data.size() : 0;  // Null-safe check
     }
     
     @Override
@@ -92,6 +34,9 @@ public class CustomTableModel extends AbstractTableModel {
     
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        if (data == null || rowIndex >= data.size()) {
+            return "";
+        }
         Object item = data.get(rowIndex);
         
         if (dataType == Patient.class) {
@@ -150,6 +95,7 @@ public class CustomTableModel extends AbstractTableModel {
         return data.get(rowIndex);
     }
     
+    @SuppressWarnings("unchecked")
     public void updateData(List<?> newData) {
         // Clear current data and add new data
         ((List<Object>) data).clear();
